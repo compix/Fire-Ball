@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour {
     public Transform groundCheckTransform;
 
     private float moveSpeed = 3.0f;
+    private float moveForce = 15.0f;
     private float jumpForce = 300.0f;
 
     private bool grounded = true;
@@ -29,7 +30,11 @@ public class PlayerControl : MonoBehaviour {
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
 
-        playerBody.velocity = new Vector2(horizontalAxis * moveSpeed, playerBody.velocity.y);
+        if(grounded)
+            playerBody.velocity = new Vector2(horizontalAxis * moveSpeed, playerBody.velocity.y);
+        else
+            playerBody.AddForce(new Vector2(horizontalAxis * moveSpeed, 0.0f));
+        //playerBody.velocity = new Vector2(horizontalAxis * moveSpeed, playerBody.velocity.y);
 
         if (jump)
         {
