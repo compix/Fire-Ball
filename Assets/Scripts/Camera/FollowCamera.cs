@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class FollowCamera : MonoBehaviour
@@ -9,8 +9,8 @@ public class FollowCamera : MonoBehaviour
     private float followSpeed = 4.0f;
 
 	// Use this for initialization
-	void Start () {
-	    
+	void Start ()
+    {
 	}
 	
 	// Update is called once per frame

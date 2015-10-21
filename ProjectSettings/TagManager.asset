@@ -5,7 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Magnet
+  - Stone
+  - Fire
+  - Burnable
+  - Player
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - 
   - 
   - Ground
-  - Magnet
-  - 
+  - MidLayer
+  - Player
   - 
   - 
   - 
@@ -42,4 +45,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 114777711
+    locked: 0
+  - name: MidLayer
+    uniqueID: 1120245825
+    locked: 0
+  - name: Fire
+    uniqueID: 1231712397
+    locked: 0
+  - name: Player
+    uniqueID: 1777331435
     locked: 0
