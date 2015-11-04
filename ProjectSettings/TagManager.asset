@@ -8,7 +8,6 @@ TagManager:
   - Stone
   - Fire
   - Burnable
-  - Player
   layers:
   - Default
   - TransparentFX
@@ -57,4 +56,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1777331435
+    locked: 0
+  - name: UI
+    uniqueID: 580713643
     locked: 0

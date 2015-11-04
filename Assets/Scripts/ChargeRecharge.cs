@@ -37,7 +37,7 @@ public class ChargeRecharge : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && collision.GetComponent<PlayerControl>() != null)
         {
             collision.GetComponent<PlayerControl>().recharge();
             m_particleSystem.emissionRate = 100.0f;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SelfDestruction : MonoBehaviour
 {
-    public float lifeDuration = 5.0f;
+    public float duration = 5.0f;
 
     private float maxParticleLifetime = 0.0f;
 
@@ -15,7 +15,7 @@ public class SelfDestruction : MonoBehaviour
         foreach (var system in systems)
             maxParticleLifetime = Mathf.Max(system.startLifetime, maxParticleLifetime);
 
-        float destructionTime = Time.time + lifeDuration;
+        float destructionTime = Time.time + duration;
 
         while (Time.time < destructionTime)
             yield return null;
@@ -26,6 +26,9 @@ public class SelfDestruction : MonoBehaviour
 
         // Wait for any remaining particles to expire
         yield return new WaitForSeconds(maxParticleLifetime);
+
+        if(gameObject.tag == "Player")
+            Application.LoadLevel(Application.loadedLevelName);
 
         Destroy(gameObject);
     }

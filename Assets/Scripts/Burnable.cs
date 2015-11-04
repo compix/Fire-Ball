@@ -34,9 +34,9 @@ public class Burnable : MonoBehaviour
         fire.GetComponent<ParticleSystemMultiplier>().multiplier = 1.8f;
         transform.parent = fire;
         gameObject.AddComponent<SelfDestruction>();
-        GetComponent<SelfDestruction>().lifeDuration = burnDuration;
+        GetComponent<SelfDestruction>().duration = burnDuration;
         fire.gameObject.AddComponent<SelfDestruction>();
-        fire.GetComponent<SelfDestruction>().lifeDuration = burnDuration - 1.0f;
+        fire.GetComponent<SelfDestruction>().duration = burnDuration - 1.0f;
         isBurning = true;
     }
 }

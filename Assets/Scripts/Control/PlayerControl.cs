@@ -4,10 +4,7 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour
 {
     private bool grounded = true;
-    private bool jump = false;
-    private bool airCharge = false;
     private bool airChargeReady = false;
-
     
     private PlayerSkills playerSkills;
     public Transform groundCheckTransform;
@@ -27,26 +24,19 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             if (grounded)
-                jump = true;
-            else if (airChargeReady)
+                airChargeReady = true;
+
+            if (airChargeReady)
             {
-                airChargeReady = false;
+                airChargeReady = grounded;
                 var target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                playerSkills.initCharge(transform.position, target);  
+                playerSkills.initCharge(transform.position, target, grounded);  
             }
         }
     }
 
     void FixedUpdate()
     {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-
-        if (jump)
-            airChargeReady = true;
-
-        playerSkills.move(horizontalAxis, jump);
-
-        jump = false;
     }
 
     public void recharge()
