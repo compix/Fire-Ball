@@ -15,6 +15,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     float minSize = 0.1f;
 
+    [SerializeField]
+    Transform m_loseSound;
+
     // Use this for initialization
     void Start()
     {
@@ -48,6 +51,15 @@ public class Health : MonoBehaviour
                 gameObject.GetComponent<SelfDestruction>().duration = 0.0f;
 
                 Destroy(GetComponent<PlayerControl>());
+                Destroy(GetComponent<CircleCollider2D>());
+                Destroy(GetComponent<Rigidbody2D>());
+
+                if(m_loseSound)
+                {
+                    AudioSource sound = m_loseSound.GetComponent<AudioSource>();
+                    if(sound && sound.enabled)
+                        sound.Play();
+                }
             }
         }
     }

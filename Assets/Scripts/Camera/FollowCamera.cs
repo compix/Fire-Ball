@@ -33,11 +33,14 @@ public class FollowCamera : MonoBehaviour
         maxX -= horzExtent;
         maxY -= vertExtent;
         */
+
+        
     }
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        //GetComponent<Camera>().orthographicSize = GetComponent<Camera>().aspect * 4;
     }
 
     void LateUpdate()

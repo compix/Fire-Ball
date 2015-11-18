@@ -1,19 +1,26 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
+    [SerializeField]
+    RectTransform rectTransform;
+
+    [SerializeField]
+    EventSystem eventSystem;
+
     private bool grounded = true;
     private bool airChargeReady = false;
     
     private PlayerSkills playerSkills;
     public Transform groundCheckTransform;
 
+
     // Use this for initialization
     void Start()
     {
         playerSkills = GetComponent<PlayerSkills>();
-        
     }
 
     // Update is called once per frame
@@ -28,9 +35,14 @@ public class PlayerControl : MonoBehaviour
 
             if (airChargeReady)
             {
-                airChargeReady = grounded;
                 var target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                playerSkills.initCharge(transform.position, target, grounded);  
+                bool inRect = rectTransform.rect.Contains(rectTransform.worldToLocalMatrix.MultiplyPoint(target));
+
+                if(inRect)
+                {
+                    airChargeReady = grounded;
+                    playerSkills.initCharge(transform.position, target, grounded);
+                }
             }
         }
     }

@@ -41,6 +41,9 @@ public class ChargeRecharge : MonoBehaviour
         {
             collision.GetComponent<PlayerControl>().recharge();
             m_particleSystem.emissionRate = 100.0f;
+            AudioSource sound = GetComponent<AudioSource>();
+            if (sound && sound.enabled)
+                sound.Play();
             boostEffect = true;
         }
     }
