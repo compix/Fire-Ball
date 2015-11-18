@@ -5266,7 +5266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2092d0d52f7a7a74693976a25f574059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1862580782}
+  target: {fileID: 1822914817}
   minX: 3.5
   minY: 2.6500001
   maxX: 97
@@ -10340,7 +10340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_eventsToVisualize:
-  - PlayerPos
+  - BurnedVegetation
   m_eventVisualizationMeshes:
   - {fileID: 405264, guid: 0cf23e84ca89d1a46b92a4ad12dc4228, type: 2}
   m_visualize: 0
@@ -45441,6 +45441,33 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1822914816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1822914817}
+  m_Layer: 10
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822914817
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822914816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1862580782}
+  m_RootOrder: 4
 --- !u!1 &1827216267
 GameObject:
   m_ObjectHideFlags: 0
@@ -48032,6 +48059,7 @@ Transform:
   - {fileID: 1621276442}
   - {fileID: 949618524}
   - {fileID: 955360332}
+  - {fileID: 1822914817}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!50 &1862580783

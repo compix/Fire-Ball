@@ -74,7 +74,10 @@ public class PlayerSkills : MonoBehaviour
     private float m_boostEffectTimeLeft = 0.5f;
     private bool m_boostEffectActive = false;
 
-    ParticleSystem m_boostEffect;
+    private ParticleSystem m_boostEffect;
+    private Transform m_cameraTarget;
+    private float m_cameraTargetSpeedMultiplier = 0.002f;
+    private Vector2 m_cameraTargetMaxPos = new Vector2(3.0f, 3.0f);
 
     // Use this for initialization
     void Start ()
@@ -83,6 +86,8 @@ public class PlayerSkills : MonoBehaviour
         m_marker = GetComponent<DestinationMarker>();
 
         m_boostEffect = transform.Find("BoostEffect").GetComponent<ParticleSystem>();
+        m_cameraTarget = transform.FindChild("CameraTarget");
+        
     }
 	
 	// Update is called once per frame
@@ -93,6 +98,32 @@ public class PlayerSkills : MonoBehaviour
             m_boostEffectTimeLeft -= Time.deltaTime;
             if (m_boostEffectTimeLeft <= 0.0f)
                 boostEffect(false);
+        }
+
+        if(m_cameraTarget && m_playerBody)
+        {
+            float x = Mathf.Clamp(m_cameraTarget.localPosition.x + m_playerBody.velocity.x * m_cameraTargetSpeedMultiplier, -m_cameraTargetMaxPos.x, m_cameraTargetMaxPos.x);
+            float y = Mathf.Clamp(m_cameraTarget.localPosition.y + m_playerBody.velocity.y * m_cameraTargetSpeedMultiplier, -m_cameraTargetMaxPos.y, m_cameraTargetMaxPos.y);
+
+            m_cameraTarget.localPosition = new Vector2(x, 0.0f);
+
+            /*
+            if (m_playerBody.velocity.x > 0.1f)
+            {
+                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x - m_cameraTargetMaxPos.x) / m_cameraTargetMaxPos.x;
+                m_cameraTarget.localPosition = new Vector2(Mathf.Lerp(m_cameraTarget.localPosition.x, m_cameraTargetMaxPos.x, Time.deltaTime * multiplier), 0.0f);
+            }
+            else if (m_playerBody.velocity.x < -0.1f)
+            {
+                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x - m_cameraTargetMaxPos.x) / m_cameraTargetMaxPos.x;
+                m_cameraTarget.localPosition = new Vector2(Mathf.Lerp(m_cameraTarget.localPosition.x, -m_cameraTargetMaxPos.x, Time.deltaTime * multiplier), 0.0f);
+            }
+            else
+            {
+                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x) / m_cameraTargetMaxPos.x;
+                m_cameraTarget.localPosition = Vector2.Lerp(m_cameraTarget.localPosition, new Vector2(), Time.deltaTime * multiplier);
+            }
+            */
         }
     }
 
@@ -187,8 +218,8 @@ public class PlayerSkills : MonoBehaviour
         Burnable burnable = other.GetComponent<Burnable>();
         if (GetComponent<SelfDestruction>() == null && burnable && !burnable.IsBurning())
         {
-            //HeatmapEvent.Send("BurnedVegetation", transform.position, Time.timeSinceLevelLoad);
-            KHeatmap.Log("BurnedVegetation", transform.position);
+            HeatmapEvent.Send("BurnedVegetation2", transform.position, Time.timeSinceLevelLoad);
+            KHeatmap.Log("BurnedVegetation2", transform.position);
             burnable.Burn();
         }
 
@@ -203,6 +234,7 @@ public class PlayerSkills : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        /*
         Vector2 curPos = transform.position;
         Vector2 delta = m_airChargeDestination - curPos;
         if(m_playerBody.velocity.magnitude > m_endChargeSpeed)
@@ -210,5 +242,6 @@ public class PlayerSkills : MonoBehaviour
 
         m_currentCharge = null;
         m_marker.removeMark();
+        */
     }
 }

@@ -9,7 +9,7 @@ public class StartSoundDelayed : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        GetComponent<AudioSource>().Play(m_delay);
+        GetComponent<AudioSource>().PlayDelayed(m_delay);
     }
 	
 	// Update is called once per frame
