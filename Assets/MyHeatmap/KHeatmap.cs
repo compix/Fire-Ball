@@ -24,6 +24,16 @@ public class KHeatmap : MonoBehaviour
     [SerializeField]
     bool m_showHeatmapLogPath = false;
 
+    [SerializeField]
+    Camera m_camera;
+
+    [SerializeField]
+    bool m_makeScreenshotsAtStart = false;
+
+    private float m_waitTimeBeforeScreenshot = 2.0f;
+    private const int m_totalScreenShotNum = 10;
+    private int m_curScreenShotNum = 0;
+
     GameObject m_parent;
 
     static string m_basePath;
@@ -50,6 +60,8 @@ public class KHeatmap : MonoBehaviour
             foreach (string eventName in m_eventsToVisualize)
                 Visualize(eventName);
         }
+
+        m_camera.transform.position = new Vector3(3.5f, 2.66f, -9.0f);
     }
 
     static void makeDir(string dir)
@@ -61,7 +73,26 @@ public class KHeatmap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(m_makeScreenshotsAtStart)
+        {
+            m_waitTimeBeforeScreenshot -= Time.deltaTime;
+            if (m_waitTimeBeforeScreenshot > 0.0f)
+                return;
 
+            if (m_curScreenShotNum == 0)
+                Time.timeScale = 0.0f;
+
+            if (m_curScreenShotNum < m_totalScreenShotNum)
+            {
+                Application.CaptureScreenshot("Heatmap/S" + m_curScreenShotNum + ".png");
+                Vector3 camPos = m_camera.transform.position;
+                m_camera.transform.position = new Vector3(m_curScreenShotNum * m_camera.orthographicSize * 2.0f * m_camera.aspect, camPos.y, camPos.z);
+                m_curScreenShotNum++;
+
+                if (m_curScreenShotNum == m_totalScreenShotNum)
+                    Time.timeScale = 1.0f;
+            }
+        }
     }
 
     public static void Log(string eventName, Vector3 pos)

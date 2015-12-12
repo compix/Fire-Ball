@@ -100,31 +100,15 @@ public class PlayerSkills : MonoBehaviour
                 boostEffect(false);
         }
 
+        /*
         if(m_cameraTarget && m_playerBody)
         {
             float x = Mathf.Clamp(m_cameraTarget.localPosition.x + m_playerBody.velocity.x * m_cameraTargetSpeedMultiplier, -m_cameraTargetMaxPos.x, m_cameraTargetMaxPos.x);
             float y = Mathf.Clamp(m_cameraTarget.localPosition.y + m_playerBody.velocity.y * m_cameraTargetSpeedMultiplier, -m_cameraTargetMaxPos.y, m_cameraTargetMaxPos.y);
 
             m_cameraTarget.localPosition = new Vector2(x, 0.0f);
-
-            /*
-            if (m_playerBody.velocity.x > 0.1f)
-            {
-                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x - m_cameraTargetMaxPos.x) / m_cameraTargetMaxPos.x;
-                m_cameraTarget.localPosition = new Vector2(Mathf.Lerp(m_cameraTarget.localPosition.x, m_cameraTargetMaxPos.x, Time.deltaTime * multiplier), 0.0f);
-            }
-            else if (m_playerBody.velocity.x < -0.1f)
-            {
-                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x - m_cameraTargetMaxPos.x) / m_cameraTargetMaxPos.x;
-                m_cameraTarget.localPosition = new Vector2(Mathf.Lerp(m_cameraTarget.localPosition.x, -m_cameraTargetMaxPos.x, Time.deltaTime * multiplier), 0.0f);
-            }
-            else
-            {
-                float multiplier = Mathf.Abs(m_cameraTarget.localPosition.x) / m_cameraTargetMaxPos.x;
-                m_cameraTarget.localPosition = Vector2.Lerp(m_cameraTarget.localPosition, new Vector2(), Time.deltaTime * multiplier);
-            }
-            */
         }
+        */
     }
 
     void FixedUpdate()

@@ -33,9 +33,11 @@ public class PlayerControl : MonoBehaviour
             if (grounded)
                 airChargeReady = true;
 
+            var target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            KHeatmap.Log("TouchPoint", target);
+
             if (airChargeReady)
             {
-                var target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 bool inRect = rectTransform.rect.Contains(rectTransform.worldToLocalMatrix.MultiplyPoint(target));
 
                 if(inRect)
