@@ -10370,7 +10370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_eventsToVisualize:
-  - BurnedVegetation
+  - PlayerPos
   m_eventVisualizationMeshes:
   - {fileID: 405264, guid: 0cf23e84ca89d1a46b92a4ad12dc4228, type: 2}
   m_visualize: 0
